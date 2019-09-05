@@ -1,0 +1,62 @@
+.App {
+  text-align: center;
+}
+table th,
+td {
+  text-align: center;
+}
+
+.scroll {
+  overflow-y: auto;
+}
+.dateInput {
+  display: flex;
+  justify-content: center;
+}
+
+.delete-button {
+  cursor: pointer;
+  color: rgb(236, 95, 8);
+}
+.edit-button {
+  cursor: pointer;
+  color: rgb(31, 160, 31);
+}
+
+.budget {
+  border: 2px solid rgba(86, 91, 86, 0.171);
+  padding: 10px;
+}
+
+.budget-icon {
+  font-size: 2.5rem;
+  color: rgb(105, 100, 100);
+}
+.expense {
+  border: 2px solid rgba(86, 91, 86, 0.171);
+  padding: 10px;
+  margin: 40px 0 0 0;
+}
+
+.element {
+  text-align: center;
+  margin: auto;
+}
+.block {
+  width: 100%;
+  display: flex;
+}
+
+#edit-button {
+  color: rgb(128, 128, 111);
+}
+
+#delete-button {
+  color: red;
+  margin-left: 5px;
+}
+
+.expense-list {
+  display: flex;
+  width: 100%;
+}
