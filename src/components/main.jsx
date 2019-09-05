@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Budget from "./components/budget";
-import ResultBlock from "./components/results/resultBlock";
-import ExpenseBlock from "./components/expense/expenseBlock";
-import "./App.css";
-import Expense from "./components/expense";
+import Budget from "./budget";
+import ResultBlock from "./results/resultBlock";
+import ExpenseBlock from "./expense/expenseBlock";
+import "../App.css";
+import Expense from "./expense/expense";
 
 class Main extends Component {
   state = {

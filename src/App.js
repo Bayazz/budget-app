@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
-import Main from "./main";
+import Main from "./components/main";
 import NavBar from "./components/navbar";
 import "./App.css";
-import ColumnChart from "./columnChart";
+import ColumnChart from "./components/charts/columnChart";
 
 class App extends Component {
   render() {

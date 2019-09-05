@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CanvasJSReact from "./lib/canvasjs.react";
+import CanvasJSReact from "../../lib/canvasjs.react";
 import PieChart from "./pieChart";
 
 class ColumnChart extends Component {

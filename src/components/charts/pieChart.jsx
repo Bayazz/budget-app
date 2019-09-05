@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CanvasJSReact from "./lib/canvasjs.react";
+import CanvasJSReact from "../../lib/canvasjs.react";
 
 const PieChart = ({ selectedDateExpenses }) => {
   const date = Object.keys(selectedDateExpenses);
