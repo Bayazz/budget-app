@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import CanvasJSReact from "../../lib/canvasjs.react";
 
 const PieChart = ({ selectedDateExpenses }) => {
