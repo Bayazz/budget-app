@@ -2,7 +2,14 @@ import React from "react";
 import CanvasJSReact from "../../lib/canvasjs.react";
 
 const PieChart = ({ selectedDateExpenses }) => {
-  const date = Object.keys(selectedDateExpenses);
+  let chartData = [];
+
+  let date = "";
+
+  if (selectedDateExpenses) {
+    date = Object.keys(selectedDateExpenses);
+    chartData = selectedDateExpenses[date];
+  }
 
   const options = {
     title: {
@@ -42,7 +49,7 @@ const PieChart = ({ selectedDateExpenses }) => {
           console.log(e);
         },
         indexLabelFontSize: 16,
-        dataPoints: selectedDateExpenses[date].map(item => ({
+        dataPoints: chartData.map(item => ({
           label: item.name,
           y: item.expense
         }))

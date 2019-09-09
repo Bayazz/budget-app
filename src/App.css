@@ -32,6 +32,13 @@ td {
   font-size: 2.5rem;
   color: rgb(105, 100, 100);
 }
+.pointer {
+  cursor: pointer;
+}
+.pagination > li.page-item.active.pointer > a {
+  background: rgb(204, 200, 204);
+  border: 1px solid rgb(94, 92, 92);
+}
 .expense {
   border: 2px solid rgba(86, 91, 86, 0.171);
   padding: 10px;

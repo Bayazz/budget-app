@@ -10,6 +10,11 @@ class ColumnChart extends Component {
     )
   };
 
+  handleResetButton = () => {
+    localStorage.clear();
+    this.setState({ expenseListDate: null, selectedDateExpenses: null });
+  };
+
   sortByEarliestDate = dailyExpenses => {
     return dailyExpenses.sort(function(a, b) {
       return new Date(a.date) - new Date(b.date);
@@ -82,17 +87,29 @@ class ColumnChart extends Component {
     };
 
     return (
-      <div className="row">
-        <div className="col-6">
-          <CanvasJSReact.CanvasJSChart
-            options={options}
-            /* onRef = {ref => this.chart = ref} */
-          />
+      <React.Fragment>
+        <div className="row">
+          <div className="col-6">
+            <CanvasJSReact.CanvasJSChart
+              options={options}
+              /* onRef = {ref => this.chart = ref} */
+            />
+          </div>
+          <div className="col d-flex justify-content-end">
+            <PieChart selectedDateExpenses={this.state.selectedDateExpenses} />
+          </div>
         </div>
-        <div className="col d-flex justify-content-end">
-          <PieChart selectedDateExpenses={this.state.selectedDateExpenses} />
+        <div className="row">
+          <div className=" col d-flex justify-content-center">
+            <button
+              className="btn btn-primary btn-sm"
+              onClick={this.handleResetButton}
+            >
+              Reset
+            </button>
+          </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

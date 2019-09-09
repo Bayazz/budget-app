@@ -19,7 +19,7 @@ const Budget = ({ handleBudget, handleInputData, budget }) => {
             required
           />
         </div>
-        <button className="btn btn-primary btn-sm">Calculate</button>
+        <button className="btn btn-primary btn-sm">Add Budget</button>
       </form>
     </React.Fragment>
   );

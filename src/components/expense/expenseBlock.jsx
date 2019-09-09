@@ -1,8 +1,41 @@
 import React, { Component } from "react";
-import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import Pagination from "./pagination";
+import SubmitForm from "./submitForm";
+import Table from "./table";
 
 class ExpenseBlock extends Component {
+  state = {
+    pageSize: 4,
+    currentPage: 1
+  };
+
+  onPageChange = page => {
+    this.setState({ currentPage: page });
+  };
+  handlePaginate = expenseList => {
+    const { pageSize } = this.state;
+
+    let paginatedList = [];
+    let pageExpenses = [];
+    let countExpenses = 1;
+
+    for (let i = 0; i < expenseList.length; i++) {
+      pageExpenses.push(expenseList[i]);
+
+      if (
+        countExpenses % pageSize === 0 ||
+        countExpenses === expenseList.length
+      ) {
+        paginatedList.push(pageExpenses);
+        pageExpenses = [];
+      }
+      countExpenses++;
+    }
+
+    return paginatedList;
+  };
+
   render() {
     const {
       expenseList,
@@ -10,64 +43,30 @@ class ExpenseBlock extends Component {
       handleDelete,
       submitExpenseList
     } = this.props;
+    const { pageSize, currentPage } = this.state;
+
+    const paginateExpenseList = this.handlePaginate(expenseList);
+    const showExpenses = paginateExpenseList[currentPage - 1];
 
     return (
       <React.Fragment>
-        <table className="table ">
-          <thead>
-            <tr>
-              <th>Expense Title</th>
-              <th>Expense Value</th>
-              <th>Edit/Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {expenseList.map(item => (
-              <tr key={item.id}>
-                {Object.keys(item)
-                  .filter(key => key !== "id")
-                  .map(key => (
-                    <td key={key}>{item[key]}</td>
-                  ))}
-                <td>
-                  <span
-                    className="edit-button"
-                    onClick={() => handleEdit(item)}
-                  >
-                    <FontAwesomeIcon icon={faEdit} />
-                  </span>
-                  <span
-                    className="delete-button"
-                    onClick={() => handleDelete(item)}
-                  >
-                    <FontAwesomeIcon icon={faTrashAlt} />
-                  </span>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        {expenseList.length > 0 ? (
-          <div>
-            <form
-              id="submitExpenses-form"
-              className="dateInput"
-              onSubmit={submitExpenseList}
-            >
-              <input
-                name="date"
-                type="date"
-                className="form-control"
-                style={{
-                  margin: "0 50px 0 0",
-                  width: "22%"
-                }}
-                required
-              />
-              <button className="btn btn-primary btn-sm">Add expenses</button>
-            </form>
-          </div>
-        ) : null}
+        <Table
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+          expenseList={showExpenses}
+        />
+
+        <Pagination
+          pageSize={pageSize}
+          itemsCount={expenseList.length}
+          currentPage={currentPage}
+          onPageChange={this.onPageChange}
+        />
+
+        <SubmitForm
+          submitExpenseList={submitExpenseList}
+          expenseList={expenseList}
+        />
       </React.Fragment>
     );
   }
